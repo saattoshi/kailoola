@@ -27,3 +27,6 @@ yarn-error.log*
 
 # supabase local dev (contains local secrets)
 supabase/.temp/
+
+# claude code project instructions
+CLAUDE.md
