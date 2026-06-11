@@ -5,8 +5,8 @@ import {
 } from 'recharts'
 
 function formatDate(dateStr) {
-  const date = new Date(dateStr + 'T00:00:00')
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  const [year, month, day] = dateStr.split('-')
+  return `${day}/${month}`
 }
 
 const tooltipStyle = {
