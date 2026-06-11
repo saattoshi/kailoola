@@ -107,43 +107,36 @@ function SleepForm({ user, onLogAdded }) {
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-sm text-slate-400 mb-1.5">Date</label>
-          <div className="grid grid-cols-3 gap-2">
-            <div>
-              <input
-                type="number"
-                value={day}
-                onChange={e => setDay(e.target.value.padStart(2, '0'))}
-                min="1"
-                max="31"
-                placeholder="DD"
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 text-center focus:outline-none focus:ring-2 focus:ring-violet-500/50"
-              />
-              <span className="block text-xs text-slate-500 text-center mt-1">Day</span>
-            </div>
-            <div>
-              <input
-                type="number"
-                value={month}
-                onChange={e => setMonth(e.target.value.padStart(2, '0'))}
-                min="1"
-                max="12"
-                placeholder="MM"
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 text-center focus:outline-none focus:ring-2 focus:ring-violet-500/50"
-              />
-              <span className="block text-xs text-slate-500 text-center mt-1">Month</span>
-            </div>
-            <div>
-              <input
-                type="number"
-                value={year}
-                onChange={e => setYear(e.target.value)}
-                min="2020"
-                max="2099"
-                placeholder="YYYY"
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 text-center focus:outline-none focus:ring-2 focus:ring-violet-500/50"
-              />
-              <span className="block text-xs text-slate-500 text-center mt-1">Year</span>
-            </div>
+          <div className="flex items-center bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 focus-within:ring-2 focus-within:ring-violet-500/50">
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength="2"
+              value={day}
+              onChange={e => setDay(e.target.value)}
+              placeholder="DD"
+              className="w-7 bg-transparent text-slate-200 text-center focus:outline-none placeholder-slate-600"
+            />
+            <span className="text-slate-500 mx-1">/</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength="2"
+              value={month}
+              onChange={e => setMonth(e.target.value)}
+              placeholder="MM"
+              className="w-7 bg-transparent text-slate-200 text-center focus:outline-none placeholder-slate-600"
+            />
+            <span className="text-slate-500 mx-1">/</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength="4"
+              value={year}
+              onChange={e => setYear(e.target.value)}
+              placeholder="YYYY"
+              className="w-14 bg-transparent text-slate-200 text-center focus:outline-none placeholder-slate-600"
+            />
           </div>
         </div>
 
