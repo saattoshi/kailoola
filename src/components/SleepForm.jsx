@@ -50,9 +50,13 @@ function EmojiScale({ options, value, onChange }) {
 }
 
 function SleepForm({ user, onLogAdded }) {
-  const today = new Date().toISOString().split('T')[0]
+  const now = new Date()
+  const [day, setDay] = useState(String(now.getDate()).padStart(2, '0'))
+  const [month, setMonth] = useState(String(now.getMonth() + 1).padStart(2, '0'))
+  const [year, setYear] = useState(String(now.getFullYear()))
 
-  const [date, setDate] = useState(today)
+  const date = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+
   const [bedtime, setBedtime] = useState('22:00')
   const [wakeTime, setWakeTime] = useState('07:00')
   const [mood, setMood] = useState(3)
@@ -103,12 +107,44 @@ function SleepForm({ user, onLogAdded }) {
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-sm text-slate-400 mb-1.5">Date</label>
-          <input
-            type="date"
-            value={date}
-            onChange={e => setDate(e.target.value)}
-            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:ring-2 focus:ring-violet-500/50"
-          />
+          <div className="grid grid-cols-3 gap-2">
+            <div>
+              <input
+                type="number"
+                value={day}
+                onChange={e => setDay(e.target.value.padStart(2, '0'))}
+                min="1"
+                max="31"
+                placeholder="DD"
+                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 text-center focus:outline-none focus:ring-2 focus:ring-violet-500/50"
+              />
+              <span className="block text-xs text-slate-500 text-center mt-1">Day</span>
+            </div>
+            <div>
+              <input
+                type="number"
+                value={month}
+                onChange={e => setMonth(e.target.value.padStart(2, '0'))}
+                min="1"
+                max="12"
+                placeholder="MM"
+                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 text-center focus:outline-none focus:ring-2 focus:ring-violet-500/50"
+              />
+              <span className="block text-xs text-slate-500 text-center mt-1">Month</span>
+            </div>
+            <div>
+              <input
+                type="number"
+                value={year}
+                onChange={e => setYear(e.target.value)}
+                min="2020"
+                max="2099"
+                placeholder="YYYY"
+                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-200 text-center focus:outline-none focus:ring-2 focus:ring-violet-500/50"
+              />
+              <span className="block text-xs text-slate-500 text-center mt-1">Year</span>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
